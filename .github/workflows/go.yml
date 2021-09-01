@@ -25,4 +25,4 @@ jobs:
       env: 
         BotToken: ${{secrets.BotToken}}
         GaoDeToken: ${{secrets.GaoDeToken}}
-      run: ls ./../ ./
+      run: ls -lh ./.github/ ./.github/workflows
