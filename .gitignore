@@ -8,6 +8,7 @@
 .idea/*
 .idea
 .idea/*.xml
+.github/*
 # Test binary, built with `go test -c`
 *.test
 
