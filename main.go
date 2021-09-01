@@ -49,7 +49,6 @@ func main() {
 	viper.WatchConfig()
 
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		//fmt.Printf("Config file changed: %s", e.Name)
 		loges.Loges.Info("Config file changed: ", zap.Any("", e.Name))
 	})
 
