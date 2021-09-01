@@ -19,10 +19,10 @@ jobs:
         go-version: 1.17
 
     - name: Build
-      run: go build -v ./...
+      run: go build -v ./..
       
     - name: execute
       env: 
         BotToken: ${{secrets.BotToken}}
         GaoDeToken: ${{secrets.GaoDeToken}}
-      run: ./../life/life
+      run: ls ./../ ./
