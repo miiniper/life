@@ -115,8 +115,7 @@ func GetWeatherForecasts(adCode string) WeatherForecasts {
 	if resp.StatusCode != 200 {
 		loges.Loges.Info("http code not 200 ,", zap.Int("status code", resp.StatusCode))
 	}
-	//loges.Loges.Info("", zap.String("body", string(body)))
-	//	fmt.Println(string(body))
+
 	var w WeatherForecasts
 	err := json.Unmarshal(body, &w)
 	if err != nil {
@@ -149,6 +148,11 @@ func SendWeather() {
 	}
 	w := GetWeather("330106")
 
-	msg := fmt.Sprintf("位置：%s\n 天气：%s\n 风向：%s\n 风力：%s\n 温度：%s\n", w.Lives[0].City, w.Lives[0].Weather, w.Lives[0].WindDirection, w.Lives[0].WindPower, w.Lives[0].Temperature)
+	msg := FmtWeather(w)
 	bot.SendMsg("911000205", msg)
+}
+
+func FmtWeather(w WeatherInfo) string {
+	msg := fmt.Sprintf("当前天气情况:\n 位置：%s\n 天气：%s\n 风向：%s\n 风力：%s\n 温度：%s\n 湿度：%s\n", w.Lives[0].City, w.Lives[0].Weather, w.Lives[0].WindDirection, w.Lives[0].WindPower, w.Lives[0].Temperature, w.Lives[0].Humidity)
+	return msg
 }
