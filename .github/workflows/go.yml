@@ -20,6 +20,9 @@ jobs:
 
     - name: Build
       run: go build -v ./...
-
-    - name: weather
+      
+    - name: execute
+      env: 
+        BotToken: ${{secrets.BotToken}}
+        GaoDeToken: ${{secrets.GaoDeToken}}
       run: ./../life
