@@ -25,4 +25,4 @@ jobs:
       env: 
         BotToken: ${{secrets.BotToken}}
         GaoDeToken: ${{secrets.GaoDeToken}}
-      run: ls -lh ./.github/ ./.github/workflows
+      run: go run main.go
