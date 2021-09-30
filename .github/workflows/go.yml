@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '1 */2 * * *'
+    - cron: '1 */4 * * *'
 
 jobs:
 
@@ -27,4 +27,4 @@ jobs:
       env: 
         BotToken: ${{secrets.BotToken}}
         GaoDeToken: ${{secrets.GaoDeToken}}
-      run: go run main.go
+      run: ./life
