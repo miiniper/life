@@ -34,7 +34,7 @@ func main() {
 	})
 
 	c := cron.New()
-	c.AddFunc("0 10-20 * * 1-5", actions.DrinkWater)
+	c.AddFunc("0 2-12 * * 1-5", actions.DrinkWater)
 	c.AddFunc("0 10,18 * * *", actions.SendWeather)
 	//	c.AddFunc("1-59 * * * *", func() { fmt.Println("helo") })
 	c.Start()
