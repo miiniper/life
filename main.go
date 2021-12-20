@@ -38,7 +38,6 @@ func main() {
 	c.AddFunc("0 10,18 * * *", actions.SendWeather)
 	//	c.AddFunc("1-59 * * * *", func() { fmt.Println("helo") })
 	c.Start()
-	//time.Sleep(500 * time.Second)
 
 	//阻止main推出
 	ch := make(chan os.Signal)
