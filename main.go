@@ -3,6 +3,11 @@ package main
 import (
 	"fmt"
 	"life/actions"
+	"os"
+	"os/signal"
+	"syscall"
+
+	"github.com/robfig/cron/v3"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/miiniper/loges"
@@ -28,7 +33,23 @@ func main() {
 		loges.Loges.Info("Config file changed: ", zap.Any("", e.Name))
 	})
 
-	actions.SendWeather()
+	//actions.SendWeather()
 	//actions.DrinkWater()
+	//fmt.Println(time.Now().Format(time.Stamp))
+	c := cron.New()
+	c.AddFunc("0 10-20 * * *", actions.DrinkWater)
+	c.AddFunc("0 10,18 * * *", actions.SendWeather)
+	//	c.AddFunc("1-59 * * * *", func() { fmt.Println("helo") })
+	c.Start()
+	//time.Sleep(500 * time.Second)
 
+	//阻止main推出
+	ch := make(chan os.Signal)
+	//监听指定信号 ctrl+c kill
+	signal.Notify(ch, os.Interrupt, os.Kill, syscall.SIGUSR1, syscall.SIGUSR2)
+	//阻塞直到有信号传入
+	fmt.Println("启动")
+	//阻塞直至有信号传入
+	s := <-ch
+	fmt.Println("退出信号", s)
 }
