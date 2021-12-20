@@ -7,6 +7,7 @@ import (
 
 func DrinkWater() {
 	bot := NewLifeBot("lifeBot", BotToken)
-	msg := fmt.Sprintf("生活小蜜提醒您：\n现在是 %s \n您该喝水啦，休息一下!\n", time.Now().Format(time.Stamp))
+	msg := fmt.Sprintf("生活小蜜提醒您：\n现在是 %s \n您该喝水啦，休息一下!\n", time.Now().UTC().Add(8*time.Hour).Format(time.Stamp))
+
 	bot.SendMsg("911000205", msg)
 }
